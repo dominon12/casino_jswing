@@ -10,7 +10,7 @@ import Models.User;
 import java.util.Arrays;
 
 public class UserService {
-	private String dbPath = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "db.txt";
+	private String dbPath = FileSystems.getDefault().getPath(new String()).toAbsolutePath() + "/db.txt";
 	private Database db;
 	private String delimiter = ":";
 	
@@ -29,7 +29,7 @@ public class UserService {
 		
 		// append user data to the array of records
 		users.add(userData);
-		
+
 		// join the array with line separator
 		String stringToSave = String.join(System.lineSeparator(), users);
 		
@@ -83,7 +83,7 @@ public class UserService {
 
 	private List<String> getAllResults() throws IOException {
 		String savedResults = this.db.read();
-		String[] splittedResults = savedResults.split(System.lineSeparator());
+		String[] splittedResults = savedResults.split(System.lineSeparator()); 
 		List<String> results = new ArrayList<String>();
 		results = new ArrayList<String>(Arrays.asList(splittedResults));
 		return results;
@@ -93,7 +93,7 @@ public class UserService {
 		int userRecordIndex = -1;
 		
 		for (int i = 0; i < results.size(); i++) {
-			String[] userArray = results.get(i).split(delimiter);
+			String[] userArray = results.get(i).split(delimiter); 
 			String savedUserName = userArray[0];
 			if (savedUserName.equalsIgnoreCase(name)) {
 				userRecordIndex = i;

@@ -3,6 +3,7 @@ package windows;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -47,9 +48,16 @@ public class Results extends JFrame {
 			     return b.getResult() - a.getResult();
 			  }
 		});
+
+		// limit results length to 3 items
+		List<User> resultsToShow = new ArrayList<User>();
+		for (int i = 0; i < results.size(); i++) {
+			if (i > 2) break;
+			resultsToShow.add(results.get(i));
+		}
 		
 		// render first 3 one by one
-		for (User user : results.subList(0, 3)) {
+		for (User user : resultsToShow) {
 			JLabel userResult = new JLabel(user.toString());
 			panel.add(userResult);
 		}
